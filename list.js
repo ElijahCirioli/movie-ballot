@@ -40,6 +40,7 @@ const transitionToList = () => {
 //turn the json list of everyone's movies into something visible
 const displayTotalList = () => {
 	$("#total-list").empty();
+	totalList.sort((a, b) => a.index - b.index);
 	for (const movie of totalList) {
 		//add html for the movie
 		$("#total-list").append(

@@ -55,32 +55,21 @@ const attemptToJoin = (code) => {
 const addToMasterList = (list) => {
 	let i = 0;
 	for (const movie of list) {
-		if (movie === undefined) {
-			console.log("movie is undefined");
-			continue;
-		}
 		//make sure we don't put in duplicates
 		if (alreadyInTotal(movie.id)) continue;
 		//add to database
-		setTimeout(
-			(movie, i) => {
-				database.ref(`/${roomCode}/movies/${i}-${movie.id}`).set({
-					index: i,
-					id: movie.id,
-					title: movie.title,
-					year: movie.year,
-					type: movie.type,
-					score: movie.score,
-					overview: movie.overview,
-					smallPoster: movie.smallPoster,
-					largePoster: movie.largePoster,
-					active: movie.active,
-				});
-			},
-			i * 15,
-			movie,
-			i
-		);
+		database.ref(`/${roomCode}/movies/${i}-${movie.id}`).set({
+			index: i,
+			id: movie.id,
+			title: movie.title,
+			year: movie.year,
+			type: movie.type,
+			score: movie.score,
+			overview: movie.overview,
+			smallPoster: movie.smallPoster,
+			largePoster: movie.largePoster,
+			active: movie.active,
+		});
 		i++;
 	}
 };
