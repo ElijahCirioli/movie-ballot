@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Elijah Cirioli</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link href="/page-style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/header-style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="./style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="./desktop-style.css" rel="stylesheet" type="text/css" media="all" />
+
+		<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+		<link rel="manifest" href="/favicon/site.webmanifest" />
+		<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#00aba9" />
+		<meta name="theme-color" content="#ffffff" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="all-wrap">
+			<div id="header-wrap">
+				<a class="header-logo" href="https://elijahcirioli.com"></a>
+				<button id="home-button" hidden></button>
+				<p id="small-code-label" hidden></p>
+			</div>
+			<div id="num-people-wrap" hidden>
+				<p id="people-count">1</p>
+				<img id="people-image" alt="number of people" src="people_icon.png" />
+			</div>
+			<div id="page-wrap">
+				<div id="home-wrap">
+					<p class="label" id="home-label">Vote with friends to decide what to watch</p>
+					<form autocomplete="off">
+						<input type="text" class="text-field" id="room-code-box" maxlength="4" placeholder="CODE" />
+					</form>
+					<button id="join-room-button" class="button">Join room</button>
+					<button id="create-room-button" class="button">Create room</button>
+				</div>
+				<div id="lobby-wrap" hidden>
+					<p class="label" id="share-code-label">Share the code so your friends can join</p>
+					<p class="label" id="big-code-label"></p>
+					<p class="label" id="link-label">Or send them this link</p>
+					<button id="copy-link-button" class="button">Copy link</button>
+					<p class="label" id="lobby-waiting-label">Waiting for host to start...</p>
+					<button id="start-button" class="button">Start</button>
+				</div>
+				<div id="search-wrap" hidden>
+					<p class="label" id="my-list-label" hidden>My list</p>
+					<div id="personal-list"></div>
+					<p class="label" id="search-label">Pick what you want to watch</p>
+					<div id="search-box-wrap">
+						<form autocomplete="off">
+							<input
+								type="text"
+								class="text-field"
+								id="search-box"
+								placeholder="Start typing to search"
+							/>
+						</form>
+						<div id="search-results"></div>
+					</div>
+					<button class="button" id="done-search-button">Done</button>
+					<button id="skip-wait-button" hidden>Skip wait</button>
+				</div>
+				<div id="list-wrap" hidden>
+					<p class="label" id="list-waiting-label" hidden>Waiting for host...</p>
+					<button id="add-more-button" hidden>❮ Add more</button>
+					<div id="list-controls-wrap" hidden>
+						<div class="list-button-wrap">
+							<button class="list-button" id="random-button"></button>
+							<p class="label list-button-label">Random</p>
+						</div>
+						<div class="list-button-wrap">
+							<button class="list-button" id="vote-button"></button>
+							<p class="label list-button-label">Vote</p>
+						</div>
+						<div class="list-button-wrap">
+							<button class="list-button" id="thumb-button"></button>
+							<p class="label list-button-label">Swipe</p>
+						</div>
+					</div>
+					<div id="total-list"></div>
+					<button id="enable-all-button" hidden>Enable all</button>
+				</div>
+				<div id="swipe-wrap" hidden>
+					<p class="label" id="swipe-waiting-label">
+						You're all done. Hang tight while your friends finish up.
+					</p>
+					<button id="skip-swipe-button" hidden>Skip wait</button>
+					<div id="swipe-content">
+						<div id="card-holder">
+							<div id="current-card"></div>
+							<div id="next-card"></div>
+						</div>
+						<div id="swipe-controls">
+							<button class="swipe-button" id="no-button"></button>
+							<p class="label" id="swipe-label">Would you watch this?</p>
+							<button class="swipe-button" id="yes-button"></button>
+						</div>
+					</div>
+				</div>
+				<div id="voting-wrap" hidden>
+					<div class="voting-list-wrap">
+						<p class="label list-label">My rankings</p>
+						<div class="voting-list" id="ranked-list"></div>
+					</div>
+					<div class="voting-list-wrap">
+						<p class="label list-label">Unranked</p>
+						<div class="voting-list" id="unranked-list"></div>
+					</div>
+					<div id="number-selection" hidden>
+						<form autocomplete="off">
+							<label id="num-winners-label" for="num-winners">Number of winners:</label>
+							<input type="number" id="num-winners" name="num-winners" min="1" max="1" value="1" />
+						</form>
+					</div>
+					<button class="button" id="done-vote-button">Done</button>
+					<button id="skip-vote-button" hidden>Skip wait</button>
+				</div>
+			</div>
+			<div id="host-notification" hidden>
+				<button id="host-x-button">x</button>
+				<p id="host-notification-title">You are now the host</p>
+				<p id="host-notification-text">The old host has left. Some progress may be lost. Sorry about that.</p>
+			</div>
+			<div id="winner-display" hidden>
+				<p class="label" id="winner-label">We have a winner!</p>
+				<div id="winner-card-wrap"></div>
+				<button class="button" id="winner-card-x">Okay</button>
+			</div>
+		</div>
+
+		<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+		<script>
+			var firebaseConfig = {
+				apiKey: "AIzaSyBIgLtvhlGKyPCrSIT9InyUBcDoFhC10nA",
+				authDomain: "movieballot.firebaseapp.com",
+				databaseURL: "https://movieballot-default-rtdb.firebaseio.com",
+				projectId: "movieballot",
+				storageBucket: "movieballot.appspot.com",
+				messagingSenderId: "347751269540",
+				appId: "1:347751269540:web:36ded88f3399d9f0ce9231",
+				measurementId: "G-27QKCHW2LQ",
+			};
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+			firebase.analytics();
+		</script>
+
+		<script src="./voting.js"></script>
+		<script src="./swipe.js"></script>
+		<script src="./list.js"></script>
+		<script src="./search.js"></script>
+		<script src="./lobby.js"></script>
+		<script src="./server.js"></script>
+		<script src="./home.js"></script>
+	</body>
+</html>
