@@ -112,6 +112,8 @@
 	}
 	#card-holder {
 		margin-top: 10px;
+		height: min-content;
+		padding-bottom: 40px;
 	}
 	#current-card {
 		min-width: 0;
@@ -122,7 +124,6 @@
 		right: 0;
 		bottom: 0;
 		margin: 0 auto;
-		height: calc(100vh - 140px);
 	}
 	#next-card {
 		min-width: 0;
